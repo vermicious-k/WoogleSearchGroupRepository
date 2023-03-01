@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.util.Iterator;
+import java.util.ArrayList;
 
 
 /*
@@ -9,7 +10,10 @@ public class PageSet implements Serializable {
     /**
      * Create an empty page set
      */
+    ArrayList<Page> page_array;
     public PageSet() {
+        page_array = new ArrayList<Page>();
+        
     }
 
     /**
@@ -19,6 +23,10 @@ public class PageSet implements Serializable {
      * @return True if the page was added successfully, false otherwise.
      */
     public boolean add(Page page) {
+        if (!page_array.contains(page)){
+            page_array.add(page);
+            return true;
+        } 
         return false;
     }
 
@@ -31,6 +39,11 @@ public class PageSet implements Serializable {
      * @return True if the set contains this page, or false otherwise
      */
     public boolean contains(Page page) {
+        for(int i=0; i<page_array.size(); i++){
+            if (page_array.get(i).equals(page)){
+                return true;
+            }
+        }
         return false;
     }
 
@@ -38,7 +51,7 @@ public class PageSet implements Serializable {
      * Return the number of elements in the set
      */
     public int size() {
-        return 0;
+        return page_array.size();
     }
 
     /**
@@ -46,7 +59,8 @@ public class PageSet implements Serializable {
      * set
      */
     public Iterator<Page> iterator() {
-        return null;
+        Iterator<Page> pageIt = page_array.iterator();
+        return pageIt;
     }
 
     /**
@@ -57,6 +71,12 @@ public class PageSet implements Serializable {
      * @return A page set that is the intersection of both sets
      */
     public PageSet intersect(PageSet other) {
-        return null;
+        PageSet tempPS = new PageSet;
+        for(int i=0; i<page_array.size(); i++){
+            if(other.contains(page_array.get(i))){
+                // tempPS.add(other.get(i)); //need to make iterator for intersect
+            }
+        }
+        return tempPS;
     }
 }
