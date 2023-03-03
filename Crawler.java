@@ -14,6 +14,15 @@ public class Crawler {
      *
      * @param filename The file to save the inverted index to
      */
+    
+    /* 
+    URL url = new URL(a_link)
+    String hostname = url.getHost();
+    if(the hostname contains the hostpattern (which btw is .*wwu.edu) ){
+        visit that link
+    }
+    */
+    
     public Crawler(String filename) {
     }
 
