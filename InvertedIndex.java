@@ -1,5 +1,5 @@
 import java.io.Serializable;
-
+import java.util.ArrayList;
 
 /**
  * Implements an inverted index. This class maps a words to a PageSet.
@@ -38,5 +38,27 @@ public class InvertedIndex implements Serializable {
      */
     public String toString() {
         return "";
+    }
+}
+
+class Node{
+
+    String word;
+    PageSet pages;
+    Node next;
+
+    Node(String word, PageSet set){
+        this.word = word;
+        this.pages = set;
+    }
+
+    Node(String word, PageSet set, Node next){
+        this.word = word;
+        this.pages = set;
+        this.next = next;
+    }
+
+    public void setNext(Node node){
+        this.next = node;
     }
 }
