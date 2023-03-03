@@ -71,12 +71,12 @@ public class PageSet implements Serializable {
      * @return A page set that is the intersection of both sets
      */
     public PageSet intersect(PageSet other) {
-        PageSet tempPS = new PageSet;
+        PageSet tempPS = new PageSet();
         for(int i=0; i<page_array.size(); i++){
-            if(other.contains(page_array.get(i))){
-                // tempPS.add(other.get(i)); //need to make iterator for intersect
+            if(other.contains(this.page_array.get(i))){
+                tempPS.add(this.page_array.get(i)); //need to make iterator for intersect
             }
-        }
+        }   
         return tempPS;
     }
 }
