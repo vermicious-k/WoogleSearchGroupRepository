@@ -24,11 +24,12 @@ public class InvertedIndex implements Serializable {
     public PageSet lookup(String word) {
         //iterate thru indexlist, search for a matching word node
         for(int i=0; i < indexList.size(); i++){
-            if(this.indexList.get(i).getWord() == word){
+
+            if(this.indexList.get(i).getWord().equals(word)){
                 return this.indexList.get(i).getPageSet();
             }
         }
-        return null;
+        return new PageSet();
     }
 
     /**
@@ -42,24 +43,21 @@ public class InvertedIndex implements Serializable {
     public void add(String[] words, Page page) {
         //step 1: iterate thru indexList and add any missing words
         for(int i=0; i < words.length; i++){
-            //iterate thru every word in words[]
-            //assume each time that the word is not contained
-            boolean contains = false;
-            int j=0;
-            while(j < indexList.size() && !contains){
-                //iterate thru every node in indexList
+            //thru words
+            boolean contained = false;
+            for(int j=0; j < indexList.size(); j++){
+                //thru indexList
                 if(this.indexList.get(j).getWord().equals(words[i])){
-                    //if the word is found, set contains to true to break the while loop
-                    contains = true;
-                    //add the page to the pageSet of the word
-                    this.indexList.get(j).addPage(page);
+                    //if the word at indexList[j] matches the word, add the page to that pageSet
+                    Node tmp = this.indexList.get(i);
+                    tmp.addPage(page);
+                    this.indexList.set(j, tmp);
+                    contained = true;
                 }
-                j++;
+                //if the word at indexList[j] does not match, continue to the next word
             }
-            if (!contains) {
-                //if the word is not contained within indexList, add it and the page assignment
-                this.indexList.add(new Node(words[i], new PageSet()));
-                this.indexList.get(i).addPage(page);
+            if (!contained){
+                this.indexList.add(new Node(words[i], new PageSet(page)));
             }
         }
     }
@@ -69,9 +67,9 @@ public class InvertedIndex implements Serializable {
      * friendly way. This will help you debug.
      */
     public String toString() {
+        System.out.println();
         for(int i=0; i < indexList.size(); i++){
             //print out the word and get the list of associated pages
-
             System.out.print("[" + indexList.get(i).getWord() + "] - {");
             PageSet tmp = indexList.get(i).getPageSet();
 
@@ -79,10 +77,14 @@ public class InvertedIndex implements Serializable {
                 //print the page link
 
                 System.out.print(tmp.getPage(j).getLink());
-                System.out.print(", ");
+                if(j + 1 < indexList.get(i).getPageSet().size()){
+                    System.out.print(", ");
+                } else {
+                    System.out.print("} ");
+                }
             }
+            System.out.println();
         }
-        System.out.println();
         return "";
     }
 
