@@ -49,7 +49,7 @@ public class InvertedIndex implements Serializable {
                 //thru indexList
                 if(this.indexList.get(j).getWord().equals(words[i])){
                     //if the word at indexList[j] matches the word, add the page to that pageSet
-                    Node tmp = this.indexList.get(i);
+                    Node tmp = this.indexList.get(j);
                     tmp.addPage(page);
                     this.indexList.set(j, tmp);
                     contained = true;
