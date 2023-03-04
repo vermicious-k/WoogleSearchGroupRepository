@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 
 /**
@@ -125,9 +127,24 @@ public class Crawler {
      * Save the inverted index to disk. The filename to save to was
      * given in the constructor
      */
-    public void saveInvertedIndex() throws IOException {
+    public String getFileName(){
+        return this.filename;
+    }
+    public InvertedIndex getInvIndex(){
+        return this.crawledIndex;
     }
 
+    public void saveInvertedIndex() throws IOException {
+        InvertedIndex invertedIndex = this.getInvIndex();
+        String filename = this.getFileName();
+        
+        // Writes the contents of the inverted index to the file name
+        // given in the constructor
+        FileOutputStream fs = new FileOutputStream(filename);
+        ObjectOutputStream out = new ObjectOutputStream(fs);
+        out.writeObject(invertedIndex);
+    }
+    
     public static void main(String[] args) throws IOException {
         System.out.println("Crawling...");
         Crawler crawler = new Crawler("inverted_index.ser");
