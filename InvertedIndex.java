@@ -48,7 +48,7 @@ public class InvertedIndex implements Serializable {
             int j=0;
             while(j < indexList.size() && !contains){
                 //iterate thru every node in indexList
-                if(this.indexList.get(j).getWord() == words[i]){
+                if(this.indexList.get(j).getWord().equals(words[i])){
                     //if the word is found, set contains to true to break the while loop
                     contains = true;
                     //add the page to the pageSet of the word
