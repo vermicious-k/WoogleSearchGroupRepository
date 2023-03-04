@@ -15,6 +15,10 @@ public class PageSet implements Serializable {
         page_array = new ArrayList<Page>();
         
     }
+    public PageSet(Page page) {
+        page_array = new ArrayList<Page>();
+        page_array.add(page);
+    }
 
     public Page getPage(int index){
         return page_array.get(index);
