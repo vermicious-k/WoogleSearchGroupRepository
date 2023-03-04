@@ -16,6 +16,10 @@ public class PageSet implements Serializable {
         
     }
 
+    public Page getPage(int index){
+        return page_array.get(index);
+    }
+
     /**
      * Add a page to this page set if it does not already exist in the set.
      *
