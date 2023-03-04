@@ -124,15 +124,3 @@ class Node{
         this.pageSet.add(page);
     }
 }
-
-/*
-TODO
-- Construct an inverted index as a LinkedList of nodes, each node containing a pageset which can be added to and a keyword
-- "add" function:
-  1. iterate thru the LinkedList to make sure the words exist, if not, add them
-  2. iterate thru the LinkedList and add the given page to the pageset in each node
-  3. return void
-- "lookup" function:
-  1. Iterate thru the LinkedList to find the given word
-  2. if the word exists, return the associated pageset, if the word does not exist, return null
- */
