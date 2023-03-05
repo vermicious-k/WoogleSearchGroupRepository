@@ -94,7 +94,7 @@ public class InvertedIndex implements Serializable {
     }
 }
 
-class Node{
+class Node implements Serializable{
     String word;
     PageSet pageSet;
     Node next;
